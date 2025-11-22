@@ -21,21 +21,30 @@ export default function Home() {
     }, {});
 
   const leagueNames = {
-    "nfl": "NFL",
-    "eng.1": "English Premier League",
-    "nba": "NBA",
-    "mlb": "MLB"
+    nfl: "NFL",
+    "eng.1": "Premier League",
+    nba: "NBA",
+    mlb: "MLB",
   };
 
   const leagueGroups = groupByLeague(teams);
 
   return (
-    <div>
-      <header>Sports Fixtures</header>
-      <div className="container">
+    <div className="app-wrapper">
+      <header className="main-header">
+        <div className="logo">🏈 SportsCenter</div>
+        <nav className="nav-links">
+          <span>Scores</span>
+          <span>Teams</span>
+          <span>TV</span>
+          <span>News</span>
+        </nav>
+      </header>
+
+      <main className="main-content">
         {Object.entries(leagueGroups).map(([league, teams]) => (
-          <div className="league-section" key={league}>
-            <div className="league-title">{leagueNames[league] || league}</div>
+          <section className="league-section" key={league}>
+            <h2 className="league-title">{leagueNames[league] || league}</h2>
             <div className="team-grid">
               {teams.map((team) => (
                 <div
@@ -54,9 +63,9 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
+          </section>
         ))}
-      </div>
+      </main>
     </div>
   );
 }
